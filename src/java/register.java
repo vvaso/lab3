@@ -12,6 +12,9 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
 
 public class register extends HttpServlet {
     
@@ -64,6 +67,26 @@ public class register extends HttpServlet {
         catch(Exception se) {
             se.printStackTrace();
         }
-	
     }
+    
+   
+    public void persist(Object object) {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("WebApplication2PU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+    try {
+        em.persist(object);
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        e.printStackTrace();
+        em.getTransaction().rollback();
+    } finally {
+        em.close();
+    }
+}
+
+    private Object assertThatExceptionOfType(Class<PersistenceException> aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

@@ -3,6 +3,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+
+
 public class validate {
     
     public static boolean checkUser(String email,String psw) 
@@ -12,6 +14,7 @@ public class validate {
         String DB_PASSWORD = "21071993";
         boolean st =false;
         //ResultSet st =true;
+        
         
         try {
 
